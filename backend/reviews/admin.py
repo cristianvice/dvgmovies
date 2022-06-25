@@ -20,7 +20,6 @@ class MovieAdmin(admin.ModelAdmin):
         "release_date",
         "slug",
         "director",
-        "tags",
     )
     list_filter = (
         "title",
