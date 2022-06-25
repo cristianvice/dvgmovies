@@ -36,7 +36,7 @@ class Movie(models.Model):
 
 class Review(models.Model):
     class Meta:
-        ordering = ["-publish]_date"]
+        ordering = ["-publish_date"]
     
     title = models.CharField(max_length=255, unique=True)
     movie  = models.ForeignKey(Movie, on_delete=models.PROTECT)
