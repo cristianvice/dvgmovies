@@ -25,7 +25,9 @@ class Tag(models.Model):
 class Movie(models.Model):
     title = models.CharField(max_length=240, unique=True)
     release_date = models.DateField(blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     movie_synopsis = models.TextField(blank=True)
+    director = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
