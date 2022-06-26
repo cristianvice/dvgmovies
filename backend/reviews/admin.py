@@ -1,6 +1,5 @@
 from django.contrib import admin
-from backend.reviews.models import Director
-from reviews.models import Profile, Tag, Movie, Review, Genre, Director
+from reviews.models import Profile, Tag, Movie, Review, Genre, Director, Actor
 
 # Register your models here.
 @admin.register(Profile)
@@ -19,6 +18,10 @@ class GenreAdmin(admin.ModelAdmin):
 class DirectorAdmin(admin.ModelAdmin):
     model = Director
 
+@admin.register(Actor)
+class ActorAdmin(admin.ModelAdmin):
+    model = Actor
+
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     model = Movie
@@ -28,23 +31,23 @@ class MovieAdmin(admin.ModelAdmin):
         "title",
         "release_date",
         "slug",
-        "director",
     )
     list_filter = (
         "title",
         "director",
+        "cast",
         "release_date",
     )
     list_editable = (
         "title",
         "release_date",
         "slug",
-        "director",
     )
     search_fields = (
         "title",
         "release_date",
         "director",
+        "cast",
         "slug",
         "tags",
         "genre",
