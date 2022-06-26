@@ -22,6 +22,13 @@ class Tag(models.Model):
         return self.name
 
 
+class Genre(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=240, unique=True)
     release_date = models.DateField(blank=True)
@@ -29,6 +36,9 @@ class Movie(models.Model):
     movie_synopsis = models.TextField(blank=True)
     director = models.CharField(max_length=255, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
+    genre = models.ManyToManyField(Genre, blank=True)
+    watched_date = models.DateTimeField(blank=True, null=True)
+    watched = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

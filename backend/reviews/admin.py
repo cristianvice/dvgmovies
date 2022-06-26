@@ -1,5 +1,5 @@
 from django.contrib import admin
-from reviews.models import Profile, Tag, Movie, Review
+from reviews.models import Profile, Tag, Movie, Review, Genre
 
 # Register your models here.
 @admin.register(Profile)
@@ -9,6 +9,10 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     model = Tag
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    model = Genre
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
@@ -38,6 +42,8 @@ class MovieAdmin(admin.ModelAdmin):
         "director",
         "slug",
         "tags",
+        "genre",
+        "watched",
     )
     prepopulated_fields = {
         "slug": (
