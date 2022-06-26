@@ -1,6 +1,5 @@
 import graphene
 from django.contrib.auth import get_user_model
-from django.db.models import Prefetch
 from graphene_django import DjangoObjectType
 from reviews import models
 
