@@ -29,12 +29,19 @@ class Genre(models.Model):
         return self.name
 
 
+class Director(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=240, unique=True)
     release_date = models.DateField(blank=True)
     slug = models.SlugField(max_length=255, unique=True)
     movie_synopsis = models.TextField(blank=True)
-    director = models.CharField(max_length=255, blank=True)
+    director = models.ForeignKey(Director, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True)
     genre = models.ManyToManyField(Genre, blank=True)
     watched_date = models.DateTimeField(blank=True, null=True)

@@ -1,5 +1,6 @@
 from django.contrib import admin
-from reviews.models import Profile, Tag, Movie, Review, Genre
+from backend.reviews.models import Director
+from reviews.models import Profile, Tag, Movie, Review, Genre, Director
 
 # Register your models here.
 @admin.register(Profile)
@@ -13,6 +14,10 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
     model = Genre
+
+@admin.register(Director)
+class DirectorAdmin(admin.ModelAdmin):
+    model = Director
 
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
