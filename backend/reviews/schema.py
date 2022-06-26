@@ -3,6 +3,27 @@ from django.contrib.auth import get_user_model
 from graphene_django import DjangoObjectType
 from reviews import models
 
+'''
+NOTE:
+in django 4.0 we dont have force_text
+
+https://docs.djangoproject.com/en/4.0/ref/utils/#module-django.utils.encoding
+
+instead change force_text to force_str
+
+linux:
+
+YOUR_VENV/lib/PYTHON_VERSION/site-packages/graphene_django/utils/utils.py
+
+windows:
+
+YOUR_VENV/lib/site-packages/graphene_django/utils/utils.py
+
+from django.utils.encoding import force_text
+to
+
+from django.utils.encoding import force_str
+'''
 class UserType(DjangoObjectType):
     class Meta:
         model = get_user_model()
@@ -37,7 +58,7 @@ class MovieType(DjangoObjectType):
 
 class ReviewType(DjangoObjectType):
     class Meta:
-        model = models.Movie
+        model = models.Review
 
 # Queries
 class Query(graphene.ObjectType):
