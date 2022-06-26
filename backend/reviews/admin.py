@@ -1,5 +1,5 @@
 from django.contrib import admin
-from reviews.models import Profile, Tag, Movie, Review, Genre, Director, Actor
+from reviews.models import Profile, Tag, Movie, Review, Genre, Director, Actor, ProductionHouse
 
 # Register your models here.
 @admin.register(Profile)
@@ -22,6 +22,10 @@ class DirectorAdmin(admin.ModelAdmin):
 class ActorAdmin(admin.ModelAdmin):
     model = Actor
 
+@admin.register(ProductionHouse)
+class ProductionHouseAdmin(admin.ModelAdmin):
+    model = ProductionHouse
+
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     model = Movie
@@ -36,6 +40,7 @@ class MovieAdmin(admin.ModelAdmin):
         "title",
         "director",
         "cast",
+        "production_house",
         "release_date",
     )
     list_editable = (
@@ -48,6 +53,7 @@ class MovieAdmin(admin.ModelAdmin):
         "release_date",
         "director",
         "cast",
+        "production_house",
         "slug",
         "tags",
         "genre",

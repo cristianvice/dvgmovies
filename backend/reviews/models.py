@@ -43,6 +43,13 @@ class Actor(models.Model):
         return self.name
 
 
+class ProductionHouse(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Movie(models.Model):
     title = models.CharField(max_length=240, unique=True)
     release_date = models.DateField(blank=True)
@@ -50,6 +57,7 @@ class Movie(models.Model):
     movie_synopsis = models.TextField(blank=True)
     director = models.ForeignKey(Director, on_delete=models.CASCADE, blank=True)
     cast = models.ManyToManyField(Actor, blank=True)
+    production_house = models.ManyToManyField(ProductionHouse, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     genre = models.ManyToManyField(Genre, blank=True)
     watched_date = models.DateField(blank=True, null=True)
