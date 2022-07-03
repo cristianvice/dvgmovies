@@ -3,9 +3,6 @@
     <h2>Recent reviews</h2>
       <p v-if="error">Something went wrong...</p>
       <p v-if="loading">Loading...</p>
-      <p v-else v-for="review in result.allReviews" :key="review.id">
-        {{ review.title }}
-      </p>
       <ReviewList v-if="result.allReviews" :reviews="result.allReviews" />
   </div>
 </template>
