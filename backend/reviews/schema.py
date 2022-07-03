@@ -70,8 +70,6 @@ class Query(graphene.ObjectType):
     reviews_by_author = graphene.List(ReviewType, username=graphene.String())
     reviews_by_movie = graphene.List(ReviewType, movie=graphene.String())
     reviews_by_tag = graphene.List(ReviewType, tag=graphene.String())
-    reviews_by_genre = graphene.List(ReviewType, genre=graphene.String())
-    movies_by_tag = graphene.List(MovieType, tag=graphene.String())
     movies_by_genre = graphene.List(MovieType, genre=graphene.String())
     movies_by_cast = graphene.List(MovieType, cast=graphene.String())
     movies_by_director = graphene.List(MovieType, director=graphene.String())
