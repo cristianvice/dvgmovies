@@ -14,10 +14,11 @@
 </template>
 
 <script>
-import ReviewList from '@/components/ReviewList.vue'
+import gql from 'graphql-tag'
+import ReviewList from '../components/ReviewList.vue'
 
 export default {
-  name: 'Author',
+  name: 'AuthorItem',
   components: {
     ReviewList,
   },
@@ -34,6 +35,36 @@ export default {
         `${this.author.user.firstName} ${this.author.user.lastName}`
       ) || `${this.author.user.username}`
     },
+  },
+  async created () {
+    const user = await this.$apollo.query({
+      query: gql`query ($username: String!) {
+        authorByUsername(username: $username) {
+          website
+          bio
+          user {
+            firstName
+            lastName
+            username
+          }
+          reviewSet {
+            title
+            movie
+            publishDate
+            published
+            metaDescription
+            slug
+            tags {
+              name
+            }
+          }
+        }
+      }`,
+      variables: {
+        username: this.$route.params.username,
+      },
+    })
+    this.author = user.data.authorByUsername
   },
 }
 </script>

@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import ReviewList from '@/components/ReviewList.vue'
 
 export default {
@@ -17,6 +18,34 @@ export default {
     return {
       posts: null,
     }
+  },
+  async created () {
+    const reviews = await this.$apollo.query({
+      query: gql`query ($tag: String!) {
+        reviewsByTag(tag: $tag) {
+          title
+          movie
+          publishDate
+          published
+          metaDescription
+          slug
+          author {
+            user {
+              username
+              firstName
+              lastName
+            }
+          }
+          tags {
+            name
+          }
+        }
+      }`,
+      variables: {
+        tag: this.$route.params.tag,
+      },
+    })
+    this.reviews = reviews.data.reviewsByTag
   },
 }
 </script>

@@ -80,6 +80,7 @@ class Query(graphene.ObjectType):
         return (
             models.Review.objects.prefetch_related("tags")
             .select_related("author")
+            .select_related("movie")
             .all()
         )
     

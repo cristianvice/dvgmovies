@@ -12,15 +12,11 @@
         <router-link :to="`/tag/${tag.name}`">#{{ tag.name }}</router-link>
       </li>
     </ul>
-    <ul>
-      <li class="review__genre" v-for="genre in review.genre" :key="genre.name">
-        <router-link :to="`/genre/${genre.name}`">#{{ genre.name }}</router-link>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
 import AuthorLink from '@/components/AuthorLink.vue'
 
 export default {
@@ -40,6 +36,34 @@ export default {
         { dateStyle: 'full' },
       ).format(new Date(date))
     }
+  },
+  async created () {
+    const review = await this.$apollo.query({
+      query: gql`query ($slug: String!) {
+        reviewBySlug(slug: $slug) {
+          title
+          movie
+          publishDate
+          metaDescription
+          slug
+          body
+          author {
+            user {
+              username
+              firstName
+              lastName
+            }
+          }
+          tags {
+            name
+          }
+        }
+      }`,
+      variables: {
+        slug: this.$route.params.slug,
+      },
+    })
+    this.review = review.data.reviewBySlug
   },
 }
 </script>

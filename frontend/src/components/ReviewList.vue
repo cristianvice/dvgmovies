@@ -5,9 +5,9 @@
           <span class="review__title">
             <router-link
               :to="`/review/${review.slug}`"
-            >{{ review.title }}: {{ review.movie }}</router-link>
+            >{{ review.title }}: {{ review.movie.title }}</router-link>
           </span>
-          <span v-if="showAuthor">
+          <span>
             by <AuthorLink :author="review.author" />
           </span>
           <div class="review__date">{{ displayableDate(review.publishDate) }}</div>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import AuthorLink from '@/components/AuthorLink.vue'
+import AuthorLink from '../components/AuthorLink.vue'
 
 export default {
   name: 'ReviewList',
