@@ -16,22 +16,22 @@ const router = createRouter({
       component: HomeView,
     },
     { 
-      path: '/author/:username', 
+      path: "/author/:username", 
       name: "author",
       component: AuthorLink, 
     },
     { 
-      path: '/reviews/:slug', 
+      path: "/reviews/:slug", 
       name: "review",
       component: ReviewItem,
     },
     { 
-      path: '/tag/:tag', 
+      path: "/tag/:tag", 
       name: "tags",
       component: ReviewsByTag,
     },
     { 
-      path: '/reviews', 
+      path: "/reviews", 
       name: "reviews",
       component: ReviewsAll, 
     },
