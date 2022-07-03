@@ -58,7 +58,6 @@ class Movie(models.Model):
     director = models.ForeignKey(Director, on_delete=models.CASCADE, blank=True)
     cast = models.ManyToManyField(Actor, blank=True)
     production_house = models.ManyToManyField(ProductionHouse, blank=True)
-    tags = models.ManyToManyField(Tag, blank=True)
     genre = models.ManyToManyField(Genre, blank=True)
     watched_date = models.DateField(blank=True, null=True)
     watched = models.BooleanField(default=False)
