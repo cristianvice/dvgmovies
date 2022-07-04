@@ -1,5 +1,5 @@
 <script setup>
-import HomeView from "./views/HomeView.vue";
+import HomeView from "@/views/HomeView.vue";
 </script>
 
 <template>
@@ -15,13 +15,11 @@ import HomeView from "./views/HomeView.vue";
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/reviews">All Reviews</RouterLink>
+        <RouterLink to="/reviews">Reviews</RouterLink>
       </nav>
     </div>
   </header>
   <RouterView />
-  <HomeView />
-
 </template>
 
 <style>
