@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
-import AuthorLink from "@/components/AuthorLink.vue";
+import AboutView from "@/views/AboutView.vue"
 import ReviewItem from "@/components/ReviewItem.vue";
 import ReviewsByTag from "@/components/ReviewsByTag.vue";
 import ReviewsAll from "@/components/ReviewsAll.vue";
@@ -14,12 +14,11 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
-    { 
-      path: "/author/:username", 
-      name: "author",
-      component: AuthorLink, 
-    },
-    { 
+    {
+      path: "/about",
+      name: "about",
+      component: AboutView,
+    },    { 
       path: "/reviews/:slug", 
       name: "review",
       component: ReviewItem,

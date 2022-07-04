@@ -15,6 +15,7 @@ import HomeView from "@/views/HomeView.vue";
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/reviews">Reviews</RouterLink>
       </nav>
     </div>
