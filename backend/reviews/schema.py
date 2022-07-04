@@ -84,8 +84,7 @@ class Query(graphene.ObjectType):
     
     def resolve_all_movies(root, info):
         return (
-            models.Movie.objects.prefetch_related("tags")
-            .prefetch_related("genre")
+            models.Movie.objects.prefetch_related("genre")
             .select_related("director")
             .all()
         )
@@ -105,8 +104,7 @@ class Query(graphene.ObjectType):
 
     def resolve_movie_by_slug(root, info, slug):
         return (
-            models.Movie.objects.prefetch_related("tags")
-            .prefetch_related("genre")
+            models.Movie.objects.prefetch_related("genre")
             .select_related("director")
             .get(slug=slug)
         )
@@ -120,8 +118,7 @@ class Query(graphene.ObjectType):
 
     def resolve_movie_by_director(root, info, director):
         return (
-            models.Movie.objects.prefetch_related("tags")
-            .prefetch_related("genre")
+            models.Movie.objects.prefetch_related("genre")
             .select_related("director")
             .filter(director__name__iexact=director)
         )
@@ -133,18 +130,9 @@ class Query(graphene.ObjectType):
             .filter(tags__name__iexact=tag)
         )
 
-    def resolve_movie_by_tag(root, info, tag):
-        return (
-            models.Movie.objects.prefetch_related("tags")
-            .prefetch_related("genre")
-            .select_related("director")
-            .filter(tags__name__iexact=tag)
-        )
-
     def resolve_movie_by_genre(root, info, genre):
         return (
-            models.Movie.objects.prefetch_related("tags")
-            .prefetch_related("genre")
+            models.Movie.objects.prefetch_related("genre")
             .select_related("director")
             .filter(tags__name__iexact=genre)
         )
