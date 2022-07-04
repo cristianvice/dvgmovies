@@ -15,7 +15,7 @@
 
 <script>
 import gql from 'graphql-tag'
-import ReviewList from '../components/ReviewList.vue'
+import ReviewList from '@/components/ReviewList.vue'
 
 export default {
   name: 'AuthorItem',
