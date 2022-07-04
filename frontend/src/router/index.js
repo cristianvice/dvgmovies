@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import AuthorLink from "../components/AuthorLink.vue";
-import ReviewList from "../components/ReviewList.vue";
-import ReviewItem from "../components/ReviewItem.vue";
-import ReviewsByTag from "../components/ReviewsByTag.vue";
-import ReviewsAll from "../components/ReviewsAll.vue";
+import HomeView from "@/views/HomeView.vue";
+import AuthorLink from "@/components/AuthorLink.vue";
+import ReviewItem from "@/components/ReviewItem.vue";
+import ReviewsByTag from "@/components/ReviewsByTag.vue";
+import ReviewsAll from "@/components/ReviewsAll.vue";
 
 
 const router = createRouter({
