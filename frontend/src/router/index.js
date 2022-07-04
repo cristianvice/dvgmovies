@@ -24,14 +24,19 @@ const router = createRouter({
       component: ReviewItem,
     },
     { 
-      path: "/tag/:tag", 
-      name: "tags",
-      component: ReviewsByTag,
-    },
-    { 
       path: "/reviews", 
       name: "reviews",
       component: ReviewsAll, 
+    },
+    { 
+      path: "/movies", 
+      name: "movies",
+      component: MoviesAll, 
+    },
+    { 
+      path: "/tag/:tag", 
+      name: "tags",
+      component: ReviewsByTag,
     },
   ],
 });
