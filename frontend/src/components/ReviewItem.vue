@@ -3,7 +3,6 @@
   <p v-if="loading">Loading...</p>
   <div class="review" v-if="result">
       <h2>{{ result.reviewBySlug.title }}: {{ result.reviewBySlug.movie.title }}</h2>
-      By <AuthorLink :author="result.reviewBySlug.author" />
       <div>{{ displayableDate(result.reviewBySlug.publishDate) }}</div>
     <p class="review__description">{{ result.reviewBySlug.metaDescription }}</p>
     <article>
@@ -21,7 +20,6 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
 import { useRoute } from 'vue-router'
-import AuthorLink from '@/components/AuthorLink.vue'
 
 const REVIEW_QUERY = gql`
   query ($slug: String!) {
@@ -49,9 +47,6 @@ const REVIEW_QUERY = gql`
 
 export default {
   name: 'ReviewItem',
-  components: {
-    AuthorLink,
-  },
   data () {
     return {
       review: null,

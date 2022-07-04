@@ -8,7 +8,6 @@
             >{{ review.title }}: {{ review.movie.title }}</router-link>
           </span>
           <span>
-            by <AuthorLink :author="review.author" />
           </span>
           <div class="review__date">{{ displayableDate(review.publishDate) }}</div>
         <p class="review__description">{{ review.metaDescription }}</p>
@@ -23,13 +22,8 @@
 </template>
 
 <script>
-import AuthorLink from '@/components/AuthorLink.vue'
-
 export default {
   name: 'ReviewList',
-  components: {
-    AuthorLink,
-  },
   props: {
     reviews: {
       type: Array,
