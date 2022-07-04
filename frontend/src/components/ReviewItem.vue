@@ -1,14 +1,16 @@
 <template>
-  <div class="review" v-if="review">
-      <h2>{{ review.title }}: {{ review.movie }}</h2>
-      By <AuthorLink :author="post.author" />
-      <div>{{ displayableDate(review.publishDate) }}</div>
-    <p class="review__description">{{ review.metaDescription }}</p>
+  <p v-if="error">Something went wrong... {{ error.toString() }} </p>
+  <p v-if="loading">Loading...</p>
+  <div class="review" v-if="result">
+      <h2>{{ result.reviewBySlug.title }}: {{ result.reviewBySlug.movie.title }}</h2>
+      By <AuthorLink :author="result.reviewBySlug.author" />
+      <div>{{ displayableDate(result.reviewBySlug.publishDate) }}</div>
+    <p class="review__description">{{ result.reviewBySlug.metaDescription }}</p>
     <article>
-      {{ review.body }}
+      {{ result.reviewBySlug.body }}
     </article>
     <ul>
-      <li class="review__tags" v-for="tag in review.tags" :key="tag.name">
+      <li class="review__tags" v-for="tag in result.reviewBySlug.tags" :key="tag.name">
         <router-link :to="`/tag/${tag.name}`">#{{ tag.name }}</router-link>
       </li>
     </ul>
@@ -17,7 +19,33 @@
 
 <script>
 import gql from 'graphql-tag'
+import { useQuery } from '@vue/apollo-composable'
+import { useRoute } from 'vue-router'
 import AuthorLink from '@/components/AuthorLink.vue'
+
+const REVIEW_QUERY = gql`
+  query ($slug: String!) {
+    reviewBySlug(slug: $slug) {
+      title
+      movie {
+        title
+      }
+      publishDate
+      metaDescription
+      slug
+      body
+      author {
+        user {
+          username
+          firstName
+          lastName
+        }
+      }
+      tags {
+        name
+      }
+    }
+  }`
 
 export default {
   name: 'ReviewItem',
@@ -26,7 +54,7 @@ export default {
   },
   data () {
     return {
-      post: null,
+      review: null,
     }
   },
   methods: {
@@ -35,35 +63,18 @@ export default {
         'en-US',
         { dateStyle: 'full' },
       ).format(new Date(date))
-    }
+    },
   },
-  async created () {
-    const review = await this.$apollo.query({
-      query: gql`query ($slug: String!) {
-        reviewBySlug(slug: $slug) {
-          title
-          movie
-          publishDate
-          metaDescription
-          slug
-          body
-          author {
-            user {
-              username
-              firstName
-              lastName
-            }
-          }
-          tags {
-            name
-          }
-        }
-      }`,
-      variables: {
-        slug: this.$route.params.slug,
-      },
-    })
-    this.review = review.data.reviewBySlug
+  setup() {
+    const slug = useRoute().params.slug.toString();
+    const { result, loading, error } = useQuery(REVIEW_QUERY, () => ({
+      slug: slug,
+    }));
+    return {
+      result,
+      loading,
+      error
+    };
   },
 }
 </script>

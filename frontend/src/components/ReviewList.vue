@@ -4,7 +4,7 @@
       <li class="review" v-for="review in publishedReviews" :key="review.title">
           <span class="review__title">
             <router-link
-              :to="`/review/${review.slug}`"
+              :to="{ name: 'review', params: { slug: review.slug }}"
             >{{ review.title }}: {{ review.movie.title }}</router-link>
           </span>
           <span>
@@ -17,18 +17,13 @@
             <router-link :to="`/tag/${tag.name}`">#{{ tag.name }}</router-link>
           </li>
         </ul>
-       <ul>
-          <li class="review__genres" v-for="genre in review.genre" :key="genre.name">
-            <router-link :to="`/genre/${genre.name}`">#{{ genre.name }}</router-link>
-          </li>
-        </ul>
       </li>
     </ol>
   </div>
 </template>
 
 <script>
-import AuthorLink from '../components/AuthorLink.vue'
+import AuthorLink from '@/components/AuthorLink.vue'
 
 export default {
   name: 'ReviewList',

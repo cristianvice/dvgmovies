@@ -3,14 +3,14 @@
     <h2>Recent reviews</h2>
       <p v-if="error">Something went wrong...</p>
       <p v-if="loading">Loading...</p>
-      <ReviewList v-if="result.allReviews" :reviews="result.allReviews" />
+      <ReviewList v-if="result" :reviews="result.allReviews" />
   </div>
 </template>
 
 <script>
 import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
-import ReviewList from './ReviewList.vue'
+import ReviewList from '@/components/ReviewList.vue'
 
 const REVIEWS_QUERY = gql`
   query {
@@ -54,6 +54,5 @@ export default {
             error
         };
     },
-    components: { ReviewList }
 }
 </script>
