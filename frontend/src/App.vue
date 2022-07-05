@@ -1,7 +1,3 @@
-<script setup>
-import HomeView from "@/views/HomeView.vue";
-</script>
-
 <template>
   <header>
     <img 
@@ -17,6 +13,7 @@ import HomeView from "@/views/HomeView.vue";
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/reviews">Reviews</RouterLink>
+        <RouterLink to="/movies">Movies</RouterLink>
       </nav>
     </div>
   </header>

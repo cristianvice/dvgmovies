@@ -2,7 +2,10 @@
   <p v-if="error">Something went wrong... {{ error.toString() }} </p>
   <p v-if="loading">Loading...</p>
   <div class="review" v-if="result">
-      <h2>{{ result.reviewBySlug.title }}: {{ result.reviewBySlug.movie.title }}</h2>
+      <h2>{{ result.reviewBySlug.title }}</h2>
+      <div class="review__movie">
+          <router-link :to="`/movies/${result.reviewBySlug.movie.slug}`">{{ result.reviewBySlug.movie.title }}</router-link>
+      </div>
       <div>{{ displayableDate(result.reviewBySlug.publishDate) }}</div>
     <p class="review__description">{{ result.reviewBySlug.metaDescription }}</p>
     <article>
@@ -27,6 +30,7 @@ const REVIEW_QUERY = gql`
       title
       movie {
         title
+        slug
       }
       publishDate
       metaDescription
@@ -73,3 +77,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.review__movie {
+  font-weight: bold;
+}
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Recent movies</h2>
+    <h2>All movies</h2>
       <p v-if="error">Something went wrong...</p>
       <p v-if="loading">Loading...</p>
       <MovieList v-if="result" :movies="result.allMovies" />
@@ -12,7 +12,7 @@ import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
 import MovieList from '@/components/MovieList.vue'
 
-const REVIEWS_QUERY = gql`
+const  MOVIES_QUERY = gql`
   query {
     allMovies {
         title
@@ -33,6 +33,26 @@ const REVIEWS_QUERY = gql`
         }
         watched
         watchedDate
+        reviewSet {
+            title
+            movie {
+                title
+            }
+            publishDate
+            published
+            metaDescription
+            slug
+            author {
+                user {
+                    username
+                    firstName
+                    lastName
+                }
+            }
+            tags {
+                name
+            }
+        }
     }
   }`
 
@@ -47,7 +67,7 @@ export default {
         };
     },
     setup() {
-        const { result, loading, error } = useQuery(REVIEWS_QUERY);
+        const { result, loading, error } = useQuery(MOVIES_QUERY);
         return {
             result,
             loading,

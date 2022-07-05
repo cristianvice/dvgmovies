@@ -109,6 +109,11 @@ class Query(graphene.ObjectType):
             .get(slug=slug)
         )
 
+    def resolve_review_by_movie(root, info, movie):
+        return models.Review.objects.select_related("movie").get(
+            movie__title=movie  
+        )
+
     def resolve_review_by_author(root, info, username):
         return (
             models.Review.objects.prefetch_related("tags")

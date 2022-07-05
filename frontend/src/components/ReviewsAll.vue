@@ -18,6 +18,7 @@ const REVIEWS_QUERY = gql`
       title
       movie {
         title
+        slug
       }
       publishDate
       published

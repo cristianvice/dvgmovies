@@ -4,6 +4,8 @@ import AboutView from "@/views/AboutView.vue"
 import ReviewItem from "@/components/ReviewItem.vue";
 import ReviewsByTag from "@/components/ReviewsByTag.vue";
 import ReviewsAll from "@/components/ReviewsAll.vue";
+import MovieItem from "@/components/MovieItem.vue";
+import MoviesAll from "@/components/MoviesAll.vue";
 
 
 const router = createRouter({
@@ -32,6 +34,11 @@ const router = createRouter({
       path: "/movies", 
       name: "movies",
       component: MoviesAll, 
+    },
+    { 
+      path: "/movies/:slug", 
+      name: "movie",
+      component: MovieItem, 
     },
     { 
       path: "/tag/:tag", 

@@ -5,11 +5,9 @@
           <span class="movie__title">
             <router-link
               :to="{ name: 'movie', params: { slug: movie.slug }}"
-            >{{ movie.title }}</router-link>
+            >{{ movie.title }} - {{ releaseDate(movie.releaseDate) }}</router-link>
           </span>
-          <span>
-          </span>
-          <div class="movie__date">{{ displayableDate(movie.releaseDate) }}</div>
+        <div class="movie__date" v-if="movie.watched">Watched {{ watchDate(movie.watchedDate) }}</div>
         <p class="movie__description">{{ movie.movieSynopsis }}</p>
         <ul>
           <li class="movie__genre" v-for="genre in movie.genre" :key="genre.name">
@@ -36,12 +34,18 @@ export default {
     },
   },
   methods: {
-    displayableDate (date) {
+    releaseDate (date) {
       return new Intl.DateTimeFormat(
         'en-US',
-        { dateStyle: 'full' },
+        { year: 'numeric' },
       ).format(new Date(date))
-    }
+    },
+    watchDate (date) {
+        return new Intl.DateTimeFormat(
+            'en-US',
+            { dateStyle: 'full' },
+        ).format(new Date(date))
+    },
   },
 }
 </script>
@@ -65,9 +69,10 @@ export default {
   font-style: italic;
 }
 
-.movie__tags {
+.movie__genre {
   list-style: none;
   font-weight: bold;
   font-size: 0.8125rem;
 }
+
 </style>
