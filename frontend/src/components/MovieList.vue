@@ -27,11 +27,6 @@ export default {
       type: Array,
       required: true,
     },
-    showAuthor: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
   },
   methods: {
     releaseDate (date) {
@@ -74,5 +69,4 @@ export default {
   font-weight: bold;
   font-size: 0.8125rem;
 }
-
 </style>
