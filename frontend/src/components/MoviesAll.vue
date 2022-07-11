@@ -1,17 +1,20 @@
 <template>
   <div>
     <h2>Filter movies</h2>
-    <div class="switch-field">
-		<input type="radio" id="radio-all" name="switch-two" value="all" v-model="filter" checked/>
-		<label for="radio-all">Show all</label>
-		<input type="radio" id="radio-to-watch" name="switch-two" value="toWatch" v-model="filter" />
-		<label for="radio-to-watch">Watch List</label>
-		<input type="radio" id="radio-watched" name="switch-two" value="watched" v-model="filter" />
-		<label for="radio-watched">Already Seen</label>
-	</div>
-      <p v-if="error">Something went wrong...</p>
-      <p v-if="loading">Loading...</p>
-      <MovieList v-if="result" :movies="result.allMovies" />
+    <div>
+        <p v-if="error">Something went wrong...</p>
+        <p v-if="loading">Loading...</p>
+            <div class="switch-field" v-if="result">
+        		<input type="radio" id="radio-all" name="filter-switch" value="all" @change="filterMovies(result.allMovies)" v-model="movieFilter" checked/>
+                <label for="radio-all">Show all</label>
+                <input type="radio" id="radio-to-watch" name="filter-switch" value="toWatch" @change="filterMovies(result.allMovies)" v-model="movieFilter" />
+                <label for="radio-to-watch">Watch List</label>
+                <input type="radio" id="radio-watched" name="filter-switch" value="watched" @change="filterMovies(result.allMovies)" v-model="movieFilter" />
+                <label for="radio-watched">Already Seen</label>
+	        </div>
+    </div>
+    <MovieList v-if="allMovies" :movies="allMovies" />
+    <MovieList v-else :movies="result.allMovies" />
   </div>
 </template>
 
@@ -72,6 +75,7 @@ export default {
     data() {
         return {
             allMovies: null,
+            movieFilter: "all",
         };
     },
     setup() {
@@ -82,6 +86,21 @@ export default {
             error
         };
     },
+    methods: {
+        filterMovies (movies) {
+            const vm = this;
+            const movieFilter = vm.movieFilter;
+            if (movieFilter === "all") {
+                this.allMovies = movies;
+            }
+            if (movieFilter === "watched") {
+                this.allMovies = movies.filter(movie => movie.watched);
+            }
+            if (movieFilter === "toWatch") {
+                this.allMovies = movies.filter(movie => !movie.watched);
+            }
+        }
+    }
 }
 </script>
 
