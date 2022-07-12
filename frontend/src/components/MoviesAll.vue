@@ -14,7 +14,7 @@
 	        </div>
     </div>
     <MovieList v-if="allMovies" :movies="allMovies" />
-    <MovieList v-else :movies="result.allMovies" />
+    <MovieList v-if="result && !allMovies" :movies="result.allMovies" />
   </div>
 </template>
 

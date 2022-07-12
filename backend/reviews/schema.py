@@ -135,11 +135,11 @@ class Query(graphene.ObjectType):
             .filter(tags__name__iexact=tag)
         )
 
-    def resolve_movie_by_genre(root, info, genre):
+    def resolve_movies_by_genre(root, info, genre):
         return (
             models.Movie.objects.prefetch_related("genre")
             .select_related("director")
-            .filter(tags__name__iexact=genre)
+            .filter(genre__name__iexact=genre)
         )
 
 schema = graphene.Schema(query=Query)  
