@@ -7,6 +7,8 @@ import ReviewsAll from "@/components/ReviewsAll.vue";
 import MovieItem from "@/components/MovieItem.vue";
 import MoviesAll from "@/components/MoviesAll.vue";
 import MoviesByDirector from "@/components/MoviesByDirector.vue";
+import MoviesByProducer from "@/components/MoviesByProducer.vue";
+import MoviesByActor from "@/components/MoviesByActor.vue";
 import MoviesByGenre from "@/components/MoviesByGenre.vue";
 
 
@@ -43,9 +45,19 @@ const router = createRouter({
       component: MovieItem, 
     },
     { 
-      path: "/movies/:director", 
+      path: "/directors/:director", 
       name: "director",
       component: MoviesByDirector, 
+    },
+    {
+      path: "/producers/:productionHouse",
+      name: "producer",
+      component: MoviesByProducer,
+    },
+    {
+      path: "/cast/:actor",
+      name: "actor",
+      component: MoviesByActor,
     },
     { 
       path: "/tag/:tag", 
