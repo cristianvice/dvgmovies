@@ -11,7 +11,7 @@
         <p class="movie__description">{{ movie.movieSynopsis }}</p>
         <ul>
           <li class="movie__genre" v-for="genre in movie.genre" :key="genre.name">
-            <router-link :to="`/genre/${genre.name}`">#{{ genre.name }}</router-link>
+            <router-link :to="`/genre/${genre.name}`"> | {{ genre.name }} | </router-link>
           </li>
         </ul>
       </li>
@@ -68,5 +68,6 @@ export default {
   list-style: none;
   font-weight: bold;
   font-size: 0.8125rem;
+  display: inline;
 }
 </style>
