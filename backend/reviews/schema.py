@@ -121,7 +121,7 @@ class Query(graphene.ObjectType):
             .filter(author__user__username=username)
         )
 
-    def resolve_movie_by_director(root, info, director):
+    def resolve_movies_by_director(root, info, director):
         return (
             models.Movie.objects.prefetch_related("genre")
             .select_related("director")
