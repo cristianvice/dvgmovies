@@ -73,6 +73,7 @@ class Query(graphene.ObjectType):
     movies_by_genre = graphene.List(MovieType, genre=graphene.String())
     movies_by_cast = graphene.List(MovieType, cast=graphene.String())
     movies_by_director = graphene.List(MovieType, director=graphene.String())
+    movies_by_production_house = graphene.List(MovieType, production_house=graphene.String())
 
     def resolve_all_reviews(root, info):
         return (
@@ -126,6 +127,13 @@ class Query(graphene.ObjectType):
             models.Movie.objects.prefetch_related("genre")
             .select_related("director")
             .filter(director__name__iexact=director)
+        )
+
+    def resolve_movies_by_production_house(root, info, production_house):
+        return (
+            models.Movie.objects.prefetch_related("genre")
+            .select_related("director")
+            .filter(production_house__name__iexact=production_house)
         )
 
     def resolve_reviews_by_tag(root, info, tag):
