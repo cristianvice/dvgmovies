@@ -1,5 +1,5 @@
 <template>
-  <p v-if="error">Something went wrong... {{ error.toString() }} </p>
+  <p v-if="error">Something went wrong...</p>
   <p v-if="loading">Loading...</p>
   <div class="review" v-if="result">
       <h2>{{ result.reviewBySlug.title }}</h2>
@@ -36,13 +36,6 @@ const REVIEW_QUERY = gql`
       metaDescription
       slug
       body
-      author {
-        user {
-          username
-          firstName
-          lastName
-        }
-      }
       tags {
         name
       }

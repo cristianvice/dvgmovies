@@ -128,10 +128,10 @@ class Query(graphene.ObjectType):
             .filter(director__name__iexact=director)
         )
 
-    def resolve_review_by_tag(root, info, tag):
+    def resolve_reviews_by_tag(root, info, tag):
         return (
             models.Review.objects.prefetch_related("tags")
-            .select_related("author")
+            .select_related("movie")
             .filter(tags__name__iexact=tag)
         )
 
