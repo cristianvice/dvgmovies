@@ -43,13 +43,6 @@ const  MOVIES_BY_DIRECTOR_QUERY = gql`
             published
             metaDescription
             slug
-            author {
-                user {
-                    username
-                    firstName
-                    lastName
-                }
-            }
             tags {
                 name
             }
