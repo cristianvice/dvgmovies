@@ -149,5 +149,12 @@ class Query(graphene.ObjectType):
             .select_related("director")
             .filter(genre__name__iexact=genre)
         )
+    
+    def resolve_movies_by_cast(root, info, cast):
+        return (
+            models.Movie.objects.prefetch_related("genre")
+            .select_related("director")
+            .filter(cast__name__iexact=cast)
+        )
 
 schema = graphene.Schema(query=Query)  
