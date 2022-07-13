@@ -59,9 +59,14 @@ export default {
   font-size: 1.25rem;
 }
 
+.movie__date {
+  padding: .25rem 0;
+}
+
 .movie__description {
   color: #777;
   font-style: italic;
+  padding: .25rem 0;
 }
 
 .movie__genre {

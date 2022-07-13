@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Recent reviews</h2>
+    <h1 class="review__head">Recent reviews</h1>
       <p v-if="error">Something went wrong...</p>
       <p v-if="loading">Loading...</p>
       <ReviewList v-if="result" :reviews="result.allReviews" />
@@ -50,3 +50,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.review__head {
+  padding: 1rem 0;
+}
+</style>

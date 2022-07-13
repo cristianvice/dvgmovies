@@ -13,7 +13,7 @@
         <p class="review__description">{{ review.metaDescription }}</p>
         <ul>
           <li class="review__tags" v-for="tag in review.tags" :key="tag.name">
-            <router-link :to="`/tag/${tag.name}`">#{{ tag.name }}</router-link>
+            <router-link :to="`/tag/${tag.name}`"> # {{ tag.name }} </router-link>
           </li>
         </ul>
       </li>
@@ -74,5 +74,6 @@ export default {
   list-style: none;
   font-weight: bold;
   font-size: 0.8125rem;
+  display: inline;
 }
 </style>

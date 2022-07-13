@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h2>Filter movies</h2>
+    <h1 class="movie__head">My movie list</h1>
+    <h2 class="filter__head">Filter movies</h2>
     <div>
         <p v-if="error">Something went wrong...</p>
         <p v-if="loading">Loading...</p>
@@ -105,6 +106,14 @@ export default {
 </script>
 
 <style>
+.movie__head {
+  padding: 1rem 0;
+}
+
+.filter__head {
+    padding-bottom: .5rem;
+}
+
 .switch-field {
 	display: flex;
 	margin-bottom: 36px;
