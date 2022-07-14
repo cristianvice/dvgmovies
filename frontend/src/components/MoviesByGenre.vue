@@ -1,9 +1,10 @@
 <template>
   <div>
-    <h1>Genre: {{ $route.params.genre }} </h1>
+    <h1>Movies by genre</h1>
+    <h2 v-if="loadingMovies || loading">Loading movies by {{ $route.params.genre }}</h2>
+    <h2 v-if="result">Genre: {{ $route.params.genre }} </h2>
     <p v-if="error">Something went wrong... </p>
-    <p v-if="loading">Loading...</p>
-    <MovieList v-if="result" :movies="result.moviesByGenre" />
+    <MovieList v-if="!loadingMovies && result" :movies="result.moviesByGenre" />
   </div>
 </template>
 
@@ -64,16 +65,26 @@ export default {
   },
   data () {
     return {
-      movies: null,
+      movies: [],
+      loadingMovies: false,
     }
+  },
+  apollo: {
+    movies: {
+      query: MOVIES_BY_GENRE_QUERY,
+      variables() {
+        return { genre: this.$route.params.genre };
+      },
+    },
   },
   created() {
     this.$watch(
       () => this.$route.params,
       (toParams, previousParams) => {
         if (toParams !== previousParams) {
-          //This is incredibly hacky and should be fixed.
-          location.reload();
+          this.loadingMovies = true;
+          //This is still very hacky
+          setTimeout(location.reload(), 2000);
         }
       }
     )
@@ -87,7 +98,7 @@ export default {
       result,
       loading,
       error
-    };    
+    }; 
   }
 }
 </script>
