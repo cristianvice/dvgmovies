@@ -64,7 +64,7 @@ export default {
 }
 
 .movie__description {
-  color: #777;
+  color: #120B21;
   font-style: italic;
   padding: .25rem 0;
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>{{ $route.params.genre }} movies</h2>
+    <h1>Genre: {{ $route.params.genre }} </h1>
     <p v-if="error">Something went wrong... </p>
     <p v-if="loading">Loading...</p>
     <MovieList v-if="result" :movies="result.moviesByGenre" />

@@ -147,7 +147,7 @@ export default {
 }
 
 .switch-field input:checked + label {
-	background-color: hsla(160, 100%, 37%, .5);
+	background-color: #C2B7DA;
 	box-shadow: none;
 }
 

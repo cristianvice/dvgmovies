@@ -66,7 +66,7 @@ export default {
 }
 
 .review__description {
-  color: #777;
+  color: #120B21;
   font-style: italic;
 }
 
