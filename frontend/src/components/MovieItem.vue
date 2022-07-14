@@ -116,12 +116,12 @@ export default {
     },
     publishedReviews (reviewSet) {
         let count = 0;
-        for (const review in reviewSet) {
+        for (const review of reviewSet) {
           if (review.published) {
             count += 1;
           }
         }
-        if (count > 1) {
+        if (count > 0) {
           return true;
         }
         return false;
