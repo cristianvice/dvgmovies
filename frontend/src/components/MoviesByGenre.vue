@@ -67,6 +67,17 @@ export default {
       movies: null,
     }
   },
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      (toParams, previousParams) => {
+        if (toParams !== previousParams) {
+          //This is incredibly hacky and should be fixed.
+          location.reload();
+        }
+      }
+    )
+  },
   setup() {
     const genre = useRoute().params.genre.toString();
     const { result, loading, error } = useQuery(MOVIES_BY_GENRE_QUERY, () => ({
@@ -76,7 +87,7 @@ export default {
       result,
       loading,
       error
-    };
-  },
+    };    
+  }
 }
 </script>
