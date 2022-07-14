@@ -41,6 +41,17 @@ export default {
       reviews: null,
     }
   },
+  created() {
+    this.$watch(
+      () => this.$route.params,
+      (toParams, previousParams) => {
+        if (toParams !== previousParams) {
+          //This is incredibly hacky and should be fixed.
+          location.reload();
+        }
+      }
+    )
+  },
   setup() {
     const tag = useRoute().params.tag.toString();
     const { result, loading, error } = useQuery(REVIEWS_BY_TAG_QUERY, () => ({
